@@ -1,0 +1,27 @@
+                            Welcome to Aawazz
+
+This is our small try to make the communication better.
+
+In this application we didn't use the text button instead we use iconic buttons, Although you can view text button by pressing the "arrow-split-vertical" icon on the top right side of the menu.
+
+This Application contains different tools.
+
+1. Image To Text Converter
+    By using this tool one can extract text from the Image. The user can get the output in the audio format as well.
+
+2.Pdf To Text Converter
+    By using this tool one can extract text from the Pdf. The user can get the output in the audio format as well.
+
+3.Doc To Text Converter
+    By using this tool one can extract text from the Word Document. The user can get the output in the audio format as well.
+
+4.Text To Voice
+    By using this module one can convert the text into audio. The user have to enter the textin the text field and press the speak button.
+
+5.Voice To Text 
+    By using this module one can convert the audio into text. The user have to click on the mic icon and start talking after talking user have to press the display icon.
+
+6.Voice Assistant
+    This is a basic voice assistant using this you can search somethimg on web make simple calculations ask time and many more only by voice commands.
+
+NOTE: This is just a basic voice assistant which cannot perform complex tasks.

@@ -1,0 +1,242 @@
+#:import Clipboard kivy.core.clipboard.Clipboard
+#:import toast kivymd.toast.toast
+
+<Display>:
+
+    canvas:
+        Color:
+            rgba: root.theme_cls.bg_dark
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [15,]
+
+    size_hint: .9, .9
+
+    MDBoxLayout:
+        orientation: "vertical"
+        pos_hint: {"center_x": .5}
+        padding: "10dp"
+        spacing: "15dp"
+
+        MDBoxLayout:
+            adaptive_height: True
+            padding: "15dp", 0, "15dp", 0
+
+            MDLabel:
+                text: "Text"
+                size_hint: None, None
+                size: self.texture_size
+                text_size: None, self.font_size
+                pos_hint: {"center_y": .5}
+                theme_text_color: "Primary"
+                font_style: "H6"
+
+            Widget:
+
+            MDIconButton:
+                icon: "content-copy"
+                pos_hint: {"center_y": .5}
+                on_press:
+                    Clipboard.copy(code_input.text)
+                    toast("Copied to Clipboard")
+                    
+
+            MDIconButton:
+                icon: "microphone"
+                pos_hint: {"center_y": .5}
+                on_press:
+                    app.speak_dialog()
+
+            MDIconButton:
+                icon: "stop-circle-outline"
+                pos_hint: {"center_y": .5}
+                on_press:
+                    app.stop_speak()
+
+
+        ScrollView:
+
+            MDBoxLayout:
+                orientation: "vertical"
+                adaptive_height: True
+
+                CodeInput:
+                    id: code_input
+                    text: root.code
+                    style_name: "monokai" if app.theme_cls.theme_style == "Dark" else "colorful"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    background_normal: f"{images_path}transparent.png"
+                    readonly: True
+                    on_focus: self.focus = False
+
+<DisplayText>:
+
+    canvas:
+        Color:
+            rgba: root.theme_cls.bg_dark
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [15,]
+
+    size_hint: .9, .9
+
+    MDBoxLayout:
+        orientation: "vertical"
+        pos_hint: {"center_x": .5}
+        padding: "10dp"
+        spacing: "15dp"
+
+        MDBoxLayout:
+            adaptive_height: True
+            padding: "15dp", 0, "15dp", 0
+
+            MDLabel:
+                text: "Text"
+                size_hint: None, None
+                size: self.texture_size
+                text_size: None, self.font_size
+                pos_hint: {"center_y": .5}
+                theme_text_color: "Primary"
+                font_style: "H6"
+
+            Widget:
+
+            MDIconButton:
+                icon: "content-copy"
+                pos_hint: {"center_y": .5}
+                on_press:
+                    Clipboard.copy(code_input.text)
+                    toast("Copied to Clipboard")
+
+
+
+        ScrollView:
+
+            MDBoxLayout:
+                orientation: "vertical"
+                adaptive_height: True
+
+                CodeInput:
+                    id: code_input
+                    text: root.txt
+                    style_name: "monokai" if app.theme_cls.theme_style == "Dark" else "colorful"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    background_normal: f"{images_path}transparent.png"
+                    readonly: True
+                    on_focus: self.focus = False
+
+<DisplayKey>:
+
+    canvas:
+        Color:
+            rgba: root.theme_cls.bg_dark
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [15,]
+
+    size_hint: .9, .9
+
+    MDBoxLayout:
+        orientation: "vertical"
+        pos_hint: {"center_x": .5}
+        padding: "10dp"
+        spacing: "15dp"
+
+        MDBoxLayout:
+            adaptive_height: True
+            padding: "15dp", 0, "15dp", 0
+
+            MDLabel:
+                text: "Key"
+                size_hint: None, None
+                size: self.texture_size
+                text_size: None, self.font_size
+                pos_hint: {"center_y": .5}
+                theme_text_color: "Primary"
+                font_style: "H6"
+
+            Widget:
+
+            MDIconButton:
+                icon: "content-copy"
+                pos_hint: {"center_y": .5}
+                on_press:
+                    Clipboard.copy(code_input.text)
+                    toast("Copied to Clipboard")
+
+            MDIconButton:
+                icon: "arrow-collapse-down"
+                pos_hint: {"center_y": .5}
+                on_press:
+                    app.download_key()
+
+
+        ScrollView:
+
+            MDBoxLayout:
+                orientation: "vertical"
+                adaptive_height: True
+
+                CodeInput:
+                    id: code_input
+                    text: root.key
+                    style_name: "monokai" if app.theme_cls.theme_style == "Dark" else "colorful"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    background_normal: f"{images_path}transparent.png"
+                    readonly: True
+                    on_focus: self.focus = False
+
+
+<DisplayHelp>:
+
+    canvas:
+        Color:
+            rgba: root.theme_cls.bg_dark
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [15,]
+
+    size_hint: .9, .9
+
+    MDBoxLayout:
+        orientation: "vertical"
+        pos_hint: {"center_x": .5}
+        padding: "10dp"
+        spacing: "15dp"
+
+        MDBoxLayout:
+            adaptive_height: True
+            padding: "15dp", 0, "15dp", 0
+
+            MDLabel:
+                text: "Text"
+                size_hint: None, None
+                size: self.texture_size
+                text_size: None, self.font_size
+                pos_hint: {"center_y": .5}
+                theme_text_color: "Primary"
+                font_style: "H6"
+
+
+        ScrollView:
+
+            MDBoxLayout:
+                orientation: "vertical"
+                adaptive_height: True
+
+                CodeInput:
+                    id: code_input
+                    text: root.help_txt
+                    style_name: "monokai" if app.theme_cls.theme_style == "Dark" else "colorful"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    background_normal: f"{images_path}transparent.png"
+                    readonly: True
+                    on_focus: self.focus = False

@@ -1,0 +1,29 @@
+
+<ImgScreen>:
+
+    name: 'imgsc'
+
+    Toolbar:
+        id: toolbar
+        title: 'Image To Text'
+        pos_hint: {"top": 1}
+
+    MDFlatButton:
+        text: '+'
+        font_size: 75
+        bold: True
+        pos_hint: {'center_x':0.5, 'center_y':0.5}
+        on_release:
+            app.set_imgext()
+            app.open_filemanager()
+
+    MDIconButton:
+        icon: "arrow-left"
+        user_font_size: "34sp"
+        bold: True
+        pos_hint: {'center_x':0.03,'center_y':0.95}
+        on_press:
+            root.manager.current = 'menusc'
+            root.manager.transition.direction = 'right'
+            app.mainimage()
+

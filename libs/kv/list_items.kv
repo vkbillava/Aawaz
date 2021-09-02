@@ -1,0 +1,15 @@
+<OneLineLeftWidgetItem>
+    on_release: app.theme_cls.primary_palette = root.text
+
+    IconLeftWidget:
+        canvas.before:
+            Color:
+                rgba: root.color
+            Ellipse:
+                pos: self.pos
+                size: self.size
+
+<IconListItem>
+
+    IconLeftWidget:
+        icon: root.icon

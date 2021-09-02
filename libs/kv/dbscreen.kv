@@ -1,0 +1,41 @@
+<DbScreen>:
+
+    name: 'dbsc'
+
+    Toolbar:
+        id: toolbar
+        title: 'Stored Content'
+        pos_hint: {"top": 1}
+
+    MDIconButton:
+        icon: "arrow-left"
+        user_font_size: "34sp"
+        bold: True
+        pos_hint: {'center_x':0.03,'center_y':0.95}
+        on_press:
+            root.manager.current = 'menusc'
+            root.manager.transition.direction = 'right'
+            app.mainimage()
+
+    ScrollView:
+        do_scroll_x: False
+        do_scroll_y: True
+        Label:
+            id: lbl
+            size_hint: None, None
+            size: self.texture_size
+            text: ""
+            multiline: True
+
+    #ScrollView:
+
+
+#    GridLayout:
+#        id: container
+#        cols: 1
+#        size_hint_y: None
+#        height: self.minimum_height
+
+
+
+

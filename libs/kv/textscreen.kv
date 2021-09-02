@@ -1,0 +1,40 @@
+<TextScreen>:
+
+    name: 'textsc'
+
+    Toolbar:
+        id: toolbar
+        title: 'Text To Voice'
+        pos_hint: {"top": 1}
+
+    MDIconButton:
+        icon: "arrow-left"
+        user_font_size: "34sp"
+        bold: True
+        pos_hint: {'center_x':0.03,'center_y':0.95}
+        on_press:
+            root.manager.current = 'menusc'
+            root.manager.transition.direction = 'right'
+
+    MDTextField:
+
+        id: text_speak
+
+        pos_hint: {'center_y':0.55,'center_x':0.5}
+        size_hint: .9, .7
+        hint_text: 'Enter your Text'
+        required: False
+        mode: "rectangle"
+        multiline: True
+
+    MDRaisedButton:
+        text: 'Speak' 
+        pos_hint: {'center_y':0.1,'center_x':0.4}
+        on_press:
+            app.to_speak()
+
+    MDRaisedButton:
+        text: 'Clear' 
+        pos_hint: {'center_y':0.1,'center_x':0.6}
+        on_press:
+            app.to_clear()

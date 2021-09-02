@@ -1,0 +1,23 @@
+<AssistantScreen>:
+
+    name: 'assistsc'
+
+    Toolbar:
+        id: toolbar
+        title: 'Voice Assistant'
+        pos_hint: {"top": 1}
+
+    MDIconButton:
+        icon: "arrow-left"
+        user_font_size: "34sp"
+        bold: True
+        pos_hint: {'center_x':0.03,'center_y':0.95}
+        on_press:
+            root.manager.current = 'menusc'
+            root.manager.transition.direction = 'right'
+
+    MDFloatingActionButton:
+        icon: 'microphone' 
+        pos_hint: {'center_y':0.5,'center_x':0.5}
+        on_press:
+            app.start_assistant()

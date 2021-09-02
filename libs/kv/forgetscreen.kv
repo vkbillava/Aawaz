@@ -1,0 +1,48 @@
+<ForgetScreen>:
+
+    name: 'forgetsc'
+
+    MDTextField:
+        
+        id: forget_username
+
+        pos_hint: {'center_y':0.7,'center_x':0.5}
+        size_hint : (0.7,0.1)
+        hint_text: 'Username'
+        helper_text:'Required'
+        helper_text_mode:  'on_error'
+        icon_right: 'account'
+        icon_right_color: app.theme_cls.primary_color
+        required: True
+        password: True
+        mode: "rectangle"
+
+    MDTextField:
+
+        id: forget_password
+
+        pos_hint: {'center_y':0.5,'center_x':0.5}
+        size_hint : (0.7,0.1)
+        hint_text: 'security key'
+        helper_text:'Required'
+        helper_text_mode:  'on_error'
+        icon_right: 'key'
+        icon_right_color: app.theme_cls.primary_color
+        required: True
+        password: True
+        mode: "rectangle"
+
+    MDRaisedButton:
+        text:'Submit'
+        size_hint: (0.13,0.07)
+        pos_hint: {'center_x':0.5,'center_y':0.3}
+        on_press:
+            app.verify()
+            
+    MDIconButton:
+        icon: "arrow-left"
+        user_font_size: "34sp"
+        pos_hint: {'center_x':0.1,'center_y':0.95}
+        on_press:
+            root.manager.current = 'welcomesc'
+            root.manager.transition.direction = 'right'

@@ -1,0 +1,398 @@
+#:import environ os.environ
+#:import Home libs.classes.home.Home
+#:import Toolbar libs.classes.toolbar.Toolbar
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
+#:import Window kivy.core.window.Window
+
+
+<Toolbar>:
+    md_bg_color: app.theme_cls.primary_color
+    background_palette: "Primary"
+    background_hue: "500"
+    elevation: 10
+    right_action_items: [["brightness-6", lambda x: app.switch_theme_style()]] #, ["file-code" if self.theme_cls.device_orientation == "landscape" else "dots-vertical", lambda x: app.show_code()]]
+    #left_action_items: [["arrow-left", lambda x: app.back_to_home_screen()]]
+    left_action_items: [["assets\\transparent.png", lambda x: app.back_to_home_screen()]]
+
+
+
+
+
+<BackdropFrontLayer@FloatLayout>:
+    
+    
+
+<ThemeStyleCheckbox@MDCheckbox>:
+    group: "style"
+    size_hint: None, None
+    size: "48dp", "48dp"
+    on_active: if self.active: app.switch_theme_style()
+
+<DialogChangeTheme>:
+    size_hint: None, None
+    height: Window.height * 80 / 100
+    width: Window.width * 80 / 100
+
+    BoxLayout:
+        orientation: "vertical"
+
+        BoxLayout:
+            id: box
+            padding: "20dp"
+            spacing: "10dp"
+            size_hint_y: .35
+
+            Image:
+                source: f"assets\palette.png"
+                size_hint: None, None
+                size: box.height, box.height + dp(40)
+
+            MDLabel:
+                theme_text_color: "Primary"
+                text: "Change Theme"
+                font_style: "Button"
+
+        RecycleView:
+            id: rv
+            key_viewclass: "viewclass"
+            key_size: "height"
+
+            RecycleBoxLayout:
+                default_size: None, dp(70)
+                default_size_hint: 1, None
+                size_hint_y: None
+                height: self.minimum_height
+                orientation: "vertical"
+
+            
+
+
+<MenuScreen>:
+
+    name: 'menusc'
+
+    
+    MDBoxLayout:
+        transition: FadeTransition(duration=.2, clearcolor=app.theme_cls.bg_dark)
+
+        Home:
+            id: home
+            name: "home"
+
+            MDBackdrop:
+                id: backdrop
+                title: "Aawaz"
+                header_text: ""
+                left_action_items: [["assets\\menu.png", lambda x: self.open()]]
+                right_action_items: [["brightness-6", lambda x: app.switch_theme_style()]]
+                on_open: home.opening_animation_backdrop_components(backdrop, backlayer)
+                on_close:
+                    home.closing_animation_backdrop_components(backdrop, backlayer)
+
+                MDBackdropBackLayer:
+
+                    BackdropBackLayer:
+                        id: backlayer
+
+                MDBackdropFrontLayer:
+                    id: front_layer
+
+                    BackdropFrontLayer:
+                        id: backdrop_front_layer
+
+                        MDIconButton:
+                            icon: "arrow-split-vertical"
+                            pos_hint: {"center_x": .95, "center_y": 1}
+                            on_press:
+                                app.change_menu_click()
+                            on_release:
+                                app.change_menu_release()
+
+                        MDFlatButton:
+                            id: imgtxt
+
+                            text: ""
+                            font_size: 40
+                            bold: True
+                            pos_hint: {'center_x': 0.3, 'center_y': 0.85}
+                            size_hint: .28, .18
+                            on_release:
+                                root.manager.current = 'imgsc'
+                                root.manager.transition.direction = 'left'
+                                app.set_img()
+
+                            Image:
+                                id: imgsrc
+
+                                source: f"assets\\image-to-text.png"
+
+                            MDTooltip:
+                                tooltip_text: "Image To Text"
+                                
+
+                        MDFlatButton:
+                            id: pdftxt
+
+                            text: ""
+                            font_size: 40
+                            bold: True
+                            pos_hint: {'center_x': 0.7, 'center_y': 0.85}
+                            size_hint: .28, .28
+                            on_release:
+                                root.manager.current = 'pdfsc'
+                                root.manager.transition.direction = 'left'
+                                app.set_pdf()
+
+                            Image:
+                                id: pdfsrc
+
+                                source: f"assets\\pdf-to-txt.png"
+
+                            MDTooltip:
+                                tooltip_text: "Pdf To Text"
+                                
+
+                        MDFlatButton:
+                            id: doctxt
+
+                            text: ""
+                            font_size: 40
+                            bold: True
+                            pos_hint: {'center_x': 0.3, 'center_y': 0.55}
+                            size_hint: .28, .28
+                            on_release:
+                                root.manager.current = 'docsc'
+                                root.manager.transition.direction = 'left'
+                                app.set_doc()
+
+                            Image:
+                                id: docsrc
+
+                                source: f"assets\\doc-to-text.png"
+                                #size_hint: 3, 3
+                            MDTooltip:
+                                tooltip_text: "Doc To Text"
+
+                        MDFlatButton:
+                            id: txtvoice
+
+                            text: ""
+                            font_size: 40
+                            bold: True
+                            pos_hint: {'center_x': 0.7, 'center_y': 0.55}
+                            size_hint: .28, .18
+                            on_release:
+                                root.manager.current = 'textsc'
+                                root.manager.transition.direction = 'left'
+
+                            Image:
+                                id: txtsrc
+
+                                source: f"assets\\voice.png"
+
+                            MDTooltip:
+                                tooltip_text: "Text To Voice"
+                                
+
+
+                        MDFlatButton:
+                            id: voicetxt
+
+                            text: ""
+                            font_size: 40
+                            bold: True
+                            pos_hint: {'center_x': 0.3, 'center_y': 0.25}
+                            size_hint: .28, .18
+                            on_release:
+                                root.manager.current = 'voicesc'
+                                root.manager.transition.direction = 'left'
+
+                            Image:
+                                id: voicesrc
+                                source: f"assets\\voice-to-text.jpeg"
+                                
+                            MDTooltip:
+                                tooltip_text: "Voice To Text"
+
+                        
+                        MDFlatButton:
+                            id: assist
+
+                            text: ""
+                            font_size: 40
+                            bold: True
+                            pos_hint: {'center_x': 0.7, 'center_y': 0.25}
+                            size_hint: .28, .18
+                            on_release:
+                                root.manager.current = 'assistsc'
+                                root.manager.transition.direction = 'left'
+
+                            Image:
+                                id: assistsrc
+                                source: f"assets\\assistant.jpg"
+                                
+                            MDTooltip:
+                                tooltip_text: "Voice Assistant"
+
+                        MDRaisedButton:
+                            id: stored
+
+                            text: "Drop Database"
+                            bold: True
+                            pos_hint: {'center_x':0.3, 'center_y': 0.05}
+
+                            on_release:
+                                app.drop()
+#                                root.manager.current = 'dbsc'
+#                                root.manager.transition.direction = 'left'
+#                                app.show_data()
+
+                        MDRaisedButton:
+                            id: psmanager
+
+                            text: "Password"
+                            bold: True
+                            pos_hint: {'center_x':0.7, 'center_y': 0.05}
+
+                            on_release:
+                                root.manager.current = 'managesc'
+                                root.manager.transition.direction = 'left'
+
+
+                        MDFlatButton:
+                            id: helptxt
+
+                            text: ""
+                            font_size: 40
+                            bold: True
+                            pos_hint: {'center_x': 0.06, 'center_y': 0.98}
+                            #pos_hint: {"center_x": .95, "center_y": 1}
+                            #size_hint: .3, .2
+                            
+                            MDIconButton:
+                                id: helpsrc
+
+                                icon: "help-circle-outline"
+                                user_font_size: "45sp"
+                                on_release:
+                                    #root.manager.current = 'helpsc'
+                                    #root.manager.transition.direction = 'left'
+                                    app.set_help_text()
+                            MDTooltip:
+                                tooltip_text: "help"
+
+
+        
+    
+
+<BackdropBackLayer@FloatLayout>
+    scale_x: 0
+    scale_y: 0
+
+    Image:
+        opacity: .2
+        #source: f"assets\\bc.jpeg"
+        source: f"assets\\TvuM20.png"
+        pos_hint: {"center_y": .55}
+        canvas.before:
+            PushMatrix
+            Scale:
+                origin: self.center
+                x: root.scale_x
+                y: root.scale_y
+        canvas.after:
+            PopMatrix
+
+
+    ScrollView:
+
+        MDGridLayout:
+            adaptive_height: True
+            cols: 1
+            padding: "10dp"
+            spacing: "10dp"
+
+            MDBoxLayout:
+                orientation: "vertical"
+                adaptive_height: True
+                padding: "10dp"
+                spacing: "10dp"
+
+                MDLabel:
+                    text: "Change Style"
+                    bold: True
+                    theme_text_color: "Primary"
+
+                MDBoxLayout:
+                    size_hint: None, None
+                    adaptive_size: True
+                    spacing: "30dp"
+
+                    ThemeStyleCheckbox:
+
+                    Label:
+                        text: "Dark"
+                        color: app.theme_cls.text_color
+
+                    ThemeStyleCheckbox:
+
+                    Label:
+                        text: "Light"
+                        color: app.theme_cls.text_color
+
+            MDSeparator:
+            MDSeparator:
+
+            MDLabel:
+                id: label_theme
+                text: "Current theme: {}".format(app.theme_cls.primary_palette)
+                bold: True
+                theme_text_color: "Primary"
+                adaptive_height: True
+
+            IconListItem:
+                text: "Change Theme"
+                icon: "palette-outline"
+                divider: None
+                on_release: app.show_dialog_change_theme()
+
+            MDSeparator:
+            MDSeparator:
+
+            IconListItem:
+                icon:'logout-variant'
+                text: "Logout"
+                font_size: 20
+                #pos_hint: {'center_x':0.05,'center_y':0.97}
+                on_release:
+                    #root.manager.current = 'loginsc'
+                    #root.manager.transition.direction = 'right'
+                    app.logout()
+
+            MDSeparator:
+
+            IconListItem:
+                icon: 'power-settings'
+                text: 'Exit'
+                font_size: 20
+                #pos_hint: {'center_x':0.97,'center_y':0.97}
+                on_release:
+                    app.closeapp()
+
+            MDSeparator:
+
+            IconListItem:
+                icon: 'delete'
+                text: 'Delete Account'
+                font_size: 20
+                #pos_hint: {'center_x':0.97,'center_y':0.97}
+                on_release:
+                    app.delete_user()
+
+            MDSeparator:
+
+            Widget:
+                size_hint_y: None
+                height: app.theme_cls.standard_increment
+
+  

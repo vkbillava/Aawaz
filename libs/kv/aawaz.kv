@@ -1,0 +1,35 @@
+ScreenManager:
+
+    WelcomeScreen:
+    MainScreen:
+    LoginScreen:
+    SignupScreen:
+    ForgetScreen:
+    MenuScreen:
+    ImgScreen:
+    PdfScreen:
+    DocScreen:
+    TextScreen:
+    VoiceScreen:
+    DbScreen:
+    PassStoreScreen:
+    PassShowScreen:
+    PassUpadateScreen:
+    ManageScreen:
+    AssistantScreen:
+        
+<WelcomeScreen>:
+
+    name:'welcomesc'
+
+    MDFlatButton:
+        text: "AAWAAZ"
+        pos_hint : {'center_x':0.5,'center_y':0.5}
+        size_hint: (1,1)
+        font_size: 75
+        on_press:
+            app.changeimage()
+            
+            root.manager.current = 'loginsc'
+            root.manager.transition.direction = 'left'
+            

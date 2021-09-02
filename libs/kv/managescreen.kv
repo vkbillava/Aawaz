@@ -1,0 +1,64 @@
+<ManageScreen>:
+
+    name: 'managesc'
+
+    Toolbar:
+        id: toolbar
+        title: 'Password Manager'
+        pos_hint: {"top": 1}
+
+    MDIconButton:
+        icon: "arrow-left"
+        user_font_size: "34sp"
+        bold: True
+        pos_hint: {'center_x':0.03,'center_y':0.95}
+        on_press:
+            root.manager.current = 'menusc'
+            root.manager.transition.direction = 'right'
+            app.mainimage()
+
+#    RecycleView:
+#        id: rv
+
+    MDRaisedButton:
+        id: psmanager
+
+        text: "Generate Password"
+        bold: True
+        pos_hint: {'center_x':0.5, 'center_y': 0.75}
+
+        on_release:
+            app.display_pass()
+
+    MDRaisedButton:
+        id: psmanager
+
+        text: "Store Password"
+        bold: True
+        pos_hint: {'center_x':0.5, 'center_y': 0.55}
+
+        on_release:
+            root.manager.current = 'passstore'
+            root.manager.transition.direction = 'left'
+
+    MDRaisedButton:
+        id: psmanager
+
+        text: "Update Password"
+        bold: True
+        pos_hint: {'center_x':0.5, 'center_y': 0.35}
+
+        on_release:
+            root.manager.current = 'updatepass'
+            root.manager.transition.direction = 'left'
+
+    MDRaisedButton:
+        id: psmanager
+
+        text: "Show Password"
+        bold: True
+        pos_hint: {'center_x':0.5, 'center_y': 0.15}
+
+        on_release:
+            root.manager.current = 'showpass'
+            root.manager.transition.direction = 'left'
