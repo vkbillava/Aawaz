@@ -645,18 +645,7 @@ class AawazApp(MDApp):
             self.strng.get_screen('welcomesc').manager.current = 'welcomesc'
             self.strng.get_screen('welcomesc').manager.transition.direction = 'right'
 
-# @mainthread
-# def run():
+
 AawazApp().run()
 
-# tm = threading.Thread(target=run)
-# tm.start()
-
-
-'''Image:
-        id: back
-        source: 'E:\FinalProject\\back1.png'
-        allow_stretch: True
-        size_hint: (2, 2)
-        pos_hint: {'center_x': 0.5, 'center_y': 0.5}'''
         
