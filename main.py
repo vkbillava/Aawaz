@@ -518,9 +518,19 @@ class AawazApp(MDApp):
         name = self.strng.get_screen('passstore').ids.store_username.text
         password = self.strng.get_screen('passstore').ids.store_password.text
 
-        insertpassdb(name, password)
+        res = show_passdb(name)
+        if len(res) == 0:
+            insertpassdb(name, password)
 
-        toast("Successfully stored")
+            toast("Successfully stored")
+
+        else:
+            cancel_btn_username_dialogue = MDFlatButton(text='Retry', on_release=self.close_dialog)
+            self.dialog = MDDialog(title='Username Exists',
+                                   text='You have Entered a username which is already present in the database you can update the password in database using update password menu',
+                                   size_hint=(0.7, 0.2),
+                                   buttons=[cancel_btn_username_dialogue])
+            self.dialog.open()
         self.strng.get_screen('passstore').ids.store_username.text = ""
         self.strng.get_screen('passstore').ids.store_password.text = ""
 
@@ -528,20 +538,37 @@ class AawazApp(MDApp):
         name = self.strng.get_screen('updatepass').ids.store_username.text
         password = self.strng.get_screen('updatepass').ids.store_password.text
 
-        update_passdb(password, name)
+        res = show_passdb(name)
+        if len(res) == 0:
+            cancel_btn_username_dialogue = MDFlatButton(text='Retry', on_release=self.close_dialog)
+            self.dialog = MDDialog(title='Username Exists',
+                                   text='username doesn\'t exists in the database please enter a valid username',
+                                   size_hint=(0.7, 0.2),
+                                   buttons=[cancel_btn_username_dialogue])
+            self.dialog.open()
+        else:
+            update_passdb(password, name)
 
-        toast("Successfully Updated")
-        self.strng.get_screen('updatepass').ids.store_username.text = ""
-        self.strng.get_screen('updatepass').ids.store_password.text = ""
+            toast("Successfully Updated")
+            self.strng.get_screen('updatepass').ids.store_username.text = ""
+            self.strng.get_screen('updatepass').ids.store_password.text = ""
 
     def show_pass(self):
         name = self.strng.get_screen('showpass').ids.store_username.text
         res = show_passdb(name)
-        if self.theme_cls.device_orientation == "landscape":
-            txt = DisplayText(
-                txt = res[1],
-            )
-            txt.open()
+        if len(res) == 0:
+            cancel_btn_username_dialogue = MDFlatButton(text='Retry', on_release=self.close_dialog)
+            self.dialog = MDDialog(title='Username Exists',
+                                   text='username doesn\'t exists in the database please enter a valid username',
+                                   size_hint=(0.7, 0.2),
+                                   buttons=[cancel_btn_username_dialogue])
+            self.dialog.open()
+        else:
+            if self.theme_cls.device_orientation == "landscape":
+                txt = DisplayText(
+                    txt = res[1],
+                )
+                txt.open()
 
     def show_data(self):
         # pass
