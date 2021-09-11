@@ -118,14 +118,14 @@ class AawazApp(MDApp):
         Window.size = (800,600)
         super().__init__(**kwargs)
 
-        self.theme_cls.primary_palette = "Teal"
+        self.theme_cls.primary_palette = "DeepOrange"
         self.dialog_change_theme = None
         self.toolbar = None
 
 
     def build(self):
 
-        self.src = '\FinalProject\\back1.png'
+        self.src = 'assets\\1977137.jpg'
 
         self.sm = Screen()
         self.wing = Image(source = self.src, allow_stretch = True, size_hint = (2, 2),pos_hint={'center_x': 0.5, 'center_y': 0.5})
@@ -133,7 +133,7 @@ class AawazApp(MDApp):
         self.strng = Builder.load_file('libs\kv\\aawaz.kv')
         
     
-        #self.sm.add_widget(self.wing)
+        self.sm.add_widget(self.wing)
         self.sm.add_widget(self.strng)
 
 
@@ -590,6 +590,8 @@ class AawazApp(MDApp):
         self.strng.get_screen('menusc').ids.voicetxt.text = "Voice to Text"
         self.strng.get_screen('menusc').ids.assist.text = "Voice Assistant"
         self.strng.get_screen('menusc').ids.helptxt.text = "Help"
+        self.strng.get_screen('menusc').ids.psmanager.text = "Password Manager"
+        self.strng.get_screen('menusc').ids.stored.text = "Clear Storage"
 
         self.strng.get_screen('menusc').ids.imgsrc.source = f"assets\\transparent.png"
         self.strng.get_screen('menusc').ids.pdfsrc.source = f"assets\\transparent.png"
@@ -598,6 +600,8 @@ class AawazApp(MDApp):
         self.strng.get_screen('menusc').ids.voicesrc.source = f"assets\\transparent.png"
         self.strng.get_screen('menusc').ids.assistsrc.source = f"assets\\transparent.png"
         self.strng.get_screen('menusc').ids.helpsrc.icon = f"assets\\transparent.png"
+        self.strng.get_screen('menusc').ids.passsrc.source = f"assets\\transparent.png"
+        self.strng.get_screen('menusc').ids.dbsrc.source = f"assets\\transparent.png"
         
     def change_menu_release(self):
         self.strng.get_screen('menusc').ids.imgtxt.text = ""
@@ -607,15 +611,18 @@ class AawazApp(MDApp):
         self.strng.get_screen('menusc').ids.voicetxt.text = ""
         self.strng.get_screen('menusc').ids.assist.text = ""
         self.strng.get_screen('menusc').ids.helptxt.text = ""
+        self.strng.get_screen('menusc').ids.psmanager.text = ""
+        self.strng.get_screen('menusc').ids.stored.text = ""
 
         self.strng.get_screen('menusc').ids.imgsrc.source = f"assets\\image-to-text.png"
         self.strng.get_screen('menusc').ids.pdfsrc.source = f"assets\\pdf-to-txt.png"
         self.strng.get_screen('menusc').ids.docsrc.source = f"assets\\doc-to-text.png"
         self.strng.get_screen('menusc').ids.txtsrc.source = f"assets\\voice.png"
         self.strng.get_screen('menusc').ids.voicesrc.source = f"assets\\voice-to-text.jpeg"
-        self.strng.get_screen(
-            'menusc').ids.assistsrc.source = f"assets\\assistant.jpg"
+        self.strng.get_screen('menusc').ids.assistsrc.source = f"assets\\assistant.jpg"
         self.strng.get_screen('menusc').ids.helpsrc.icon = f"help-circle-outline"
+        self.strng.get_screen('menusc').ids.passsrc.source = f"assets\\pass.jpg"
+        self.strng.get_screen('menusc').ids.dbsrc.source = f"assets\\db.jpg"
 
     def back_to_home_screen(self):
         self.strng.get_screen('menusc').manager.current = 'menusc'

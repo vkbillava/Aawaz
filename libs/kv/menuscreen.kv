@@ -114,7 +114,7 @@
                             text: ""
                             font_size: 40
                             bold: True
-                            pos_hint: {'center_x': 0.3, 'center_y': 0.85}
+                            pos_hint: {'center_x': 0.3, 'center_y': 0.9}
                             size_hint: .28, .18
                             on_release:
                                 root.manager.current = 'imgsc'
@@ -123,11 +123,9 @@
 
                             Image:
                                 id: imgsrc
-
+                                size_hint_x: 0.9
+                                allow_stretch: True
                                 source: f"assets\\image-to-text.png"
-
-                            MDTooltip:
-                                tooltip_text: "Image To Text"
                                 
 
                         MDFlatButton:
@@ -136,7 +134,7 @@
                             text: ""
                             font_size: 40
                             bold: True
-                            pos_hint: {'center_x': 0.7, 'center_y': 0.85}
+                            pos_hint: {'center_x': 0.7, 'center_y': 0.9}
                             size_hint: .28, .28
                             on_release:
                                 root.manager.current = 'pdfsc'
@@ -145,11 +143,10 @@
 
                             Image:
                                 id: pdfsrc
-
+                                user_font_size: "45sp"
+                                size_hint_x: 0.83
+                                allow_stretch: True
                                 source: f"assets\\pdf-to-txt.png"
-
-                            MDTooltip:
-                                tooltip_text: "Pdf To Text"
                                 
 
                         MDFlatButton:
@@ -158,7 +155,7 @@
                             text: ""
                             font_size: 40
                             bold: True
-                            pos_hint: {'center_x': 0.3, 'center_y': 0.55}
+                            pos_hint: {'center_x': 0.3, 'center_y': 0.64}
                             size_hint: .28, .28
                             on_release:
                                 root.manager.current = 'docsc'
@@ -167,11 +164,11 @@
 
                             Image:
                                 id: docsrc
-
+                                size_hint_x: 0.85
+                                allow_stretch: True
                                 source: f"assets\\doc-to-text.png"
                                 #size_hint: 3, 3
-                            MDTooltip:
-                                tooltip_text: "Doc To Text"
+
 
                         MDFlatButton:
                             id: txtvoice
@@ -179,7 +176,7 @@
                             text: ""
                             font_size: 40
                             bold: True
-                            pos_hint: {'center_x': 0.7, 'center_y': 0.55}
+                            pos_hint: {'center_x': 0.7, 'center_y': 0.64}
                             size_hint: .28, .18
                             on_release:
                                 root.manager.current = 'textsc'
@@ -187,12 +184,9 @@
 
                             Image:
                                 id: txtsrc
-
+                                size_hint_x: 0.84
+                                allow_stretch: True
                                 source: f"assets\\voice.png"
-
-                            MDTooltip:
-                                tooltip_text: "Text To Voice"
-                                
 
 
                         MDFlatButton:
@@ -201,7 +195,7 @@
                             text: ""
                             font_size: 40
                             bold: True
-                            pos_hint: {'center_x': 0.3, 'center_y': 0.25}
+                            pos_hint: {'center_x': 0.3, 'center_y': 0.37}
                             size_hint: .28, .18
                             on_release:
                                 root.manager.current = 'voicesc'
@@ -209,10 +203,29 @@
 
                             Image:
                                 id: voicesrc
+                                size_hint_x: 0.84
+                                allow_stretch: True
                                 source: f"assets\\voice-to-text.jpeg"
-                                
-                            MDTooltip:
-                                tooltip_text: "Voice To Text"
+
+
+                        MDFlatButton:
+                            id: psmanager
+
+                            text: ""
+                            size_hint: .28, .18
+                            font_size: 40
+                            bold: True
+
+                            pos_hint: {'center_x': 0.7, 'center_y': 0.37}
+                            on_release:
+                                root.manager.current = 'managesc'
+                                root.manager.transition.direction = 'left'
+
+                            Image:
+                                id: passsrc
+                                size_hint_x: 0.84
+                                allow_stretch: True
+                                source: f"assets\\pass.jpg"
 
                         
                         MDFlatButton:
@@ -221,7 +234,7 @@
                             text: ""
                             font_size: 40
                             bold: True
-                            pos_hint: {'center_x': 0.7, 'center_y': 0.25}
+                            pos_hint: {'center_x':0.3, 'center_y': 0.11}
                             size_hint: .28, .18
                             on_release:
                                 root.manager.current = 'assistsc'
@@ -229,43 +242,38 @@
 
                             Image:
                                 id: assistsrc
+                                size_hint_x: 1
+                                allow_stretch: True
                                 source: f"assets\\assistant.jpg"
-                                
-                            MDTooltip:
-                                tooltip_text: "Voice Assistant"
 
-                        MDRaisedButton:
+
+                        MDFlatButton:
                             id: stored
-
-                            text: "Drop Database"
+                            size_hint: .28, .18
+                            font_size: 40
+                            text: ""
                             bold: True
-                            pos_hint: {'center_x':0.3, 'center_y': 0.05}
+                            pos_hint: {'center_x':0.7, 'center_y': 0.11}
 
                             on_release:
                                 app.drop()
 #                                root.manager.current = 'dbsc'
 #                                root.manager.transition.direction = 'left'
 #                                app.show_data()
-
-                        MDRaisedButton:
-                            id: psmanager
-
-                            text: "Password"
-                            bold: True
-                            pos_hint: {'center_x':0.7, 'center_y': 0.05}
-
-                            on_release:
-                                root.manager.current = 'managesc'
-                                root.manager.transition.direction = 'left'
+                            Image:
+                                id: dbsrc
+                                size_hint_x: 0.86
+                                allow_stretch: True
+                                source: f"assets\\db.jpg"
 
 
                         MDFlatButton:
                             id: helptxt
 
                             text: ""
-                            font_size: 40
+                            font_size: 30
                             bold: True
-                            pos_hint: {'center_x': 0.06, 'center_y': 0.98}
+                            pos_hint: {'center_x': 0.04, 'center_y': 1}
                             #pos_hint: {"center_x": .95, "center_y": 1}
                             #size_hint: .3, .2
                             
@@ -273,7 +281,7 @@
                                 id: helpsrc
 
                                 icon: "help-circle-outline"
-                                user_font_size: "45sp"
+                                user_font_size: "35sp"
                                 on_release:
                                     #root.manager.current = 'helpsc'
                                     #root.manager.transition.direction = 'left'
