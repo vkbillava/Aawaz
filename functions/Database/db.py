@@ -138,13 +138,13 @@ def display_all():
   return res
 
 def dropdb():
+  mycursor.execute("SELECT * FROM data")
+  res = mycursor.fetchall()
+
   mycursor.execute("DELETE FROM data")
   mydb.commit()
 
-  mycursor.execute("SELECT * FROM data")
-
-  res = mycursor.fetchall()
   if len(res) == 0:
-    return True
-  else:
     return False
+  else:
+    return True

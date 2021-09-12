@@ -11,10 +11,17 @@
     MDFlatButton:
         text: '+'
         font_size: 75
+        size_hint: (.5, .5)
         pos_hint: {'center_x':0.5, 'center_y':0.5}
         on_release:
             app.set_pdfext()
             app.open_filemanager()
+
+        Image:
+            size_hint_x: 0.5
+            allow_stretch: True
+            source: f'assets\\up-arrow.png'
+            pos_hint: {'center_y':0.5}
 
     MDIconButton:
         icon: "arrow-left"

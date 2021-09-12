@@ -125,7 +125,7 @@ class AawazApp(MDApp):
 
     def build(self):
 
-        self.src = 'assets\\1_ZhuqSg8Jmz4p8H6X5U1uzQ.png'
+        self.src = 'assets\\background.png'
 
         self.sm = Screen()
         self.wing = Image(source = self.src, allow_stretch = True, size_hint = (2, 2),pos_hint={'center_x': 0.5, 'center_y': 0.5})
@@ -513,6 +513,8 @@ class AawazApp(MDApp):
         res = dropdb()
         if res == True:
             toast("All the records are deleted")
+        else:
+            toast("There is Nothing to Clear")
 
     def store_pass(self):
         name = self.strng.get_screen('passstore').ids.store_username.text

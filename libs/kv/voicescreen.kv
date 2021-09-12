@@ -17,13 +17,19 @@
             root.manager.transition.direction = 'right'
 
     MDFloatingActionButton
-        icon: 'microphone' 
-        pos_hint: {'center_y':0.5,'center_x':0.4}
+        icon: 'microphone'
+        user_font_size: "70sp"
+        md_bg_color: app.theme_cls.primary_color
+        size_hint: (.25, .3)
+        pos_hint: {'center_y':0.5,'center_x':0.3}
         on_press:
             app.listen()
 
     MDFloatingActionButton:
         icon: 'card-text-outline'
-        pos_hint: {'center_y':0.5,'center_x':0.6}
+        user_font_size: "70sp"
+        md_bg_color: app.theme_cls.primary_color
+        size_hint: (.25, .3)
+        pos_hint: {'center_y':0.5,'center_x':0.7}
         on_press:
             app.converted_text()

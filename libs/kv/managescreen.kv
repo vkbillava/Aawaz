@@ -20,45 +20,90 @@
 #    RecycleView:
 #        id: rv
 
-    MDRaisedButton:
+    MDRectangleFlatButton:
         id: psmanager
 
-        text: "Generate Password"
+        text: ""
         bold: True
-        pos_hint: {'center_x':0.5, 'center_y': 0.75}
-
+        pos_hint: {'center_x':0.29, 'center_y': 0.65}
+        size_hint: (.35, .3)
         on_release:
             app.display_pass()
 
-    MDRaisedButton:
+        Image:
+            size_hint_x: 1
+            allow_stretch: True
+            source: f'assets\\generate.png'
+            pos_hint: {'center_y':0.5}
+
+    MDRectangleFlatButton:
         id: psmanager
 
-        text: "Store Password"
+        text: ""
         bold: True
-        pos_hint: {'center_x':0.5, 'center_y': 0.55}
-
+        pos_hint: {'center_x':0.71, 'center_y': 0.65}
+        size_hint: (.35, .3)
         on_release:
             root.manager.current = 'passstore'
             root.manager.transition.direction = 'left'
 
-    MDRaisedButton:
+        Image:
+            size_hint_x: 1
+            allow_stretch: True
+            source: f'assets\\store.png'
+            pos_hint: {'center_y':0.5}
+
+    MDRectangleFlatButton:
         id: psmanager
 
-        text: "Update Password"
+        text: ""
         bold: True
-        pos_hint: {'center_x':0.5, 'center_y': 0.35}
-
+        pos_hint: {'center_x':0.29, 'center_y': 0.25}
+        size_hint: (.35, .3)
         on_release:
             root.manager.current = 'updatepass'
             root.manager.transition.direction = 'left'
 
-    MDRaisedButton:
+        Image:
+            size_hint_x: 1
+            allow_stretch: True
+            source: f'assets\\update.png'
+            pos_hint: {'center_y':0.5}
+
+    MDRectangleFlatButton:
         id: psmanager
 
-        text: "Show Password"
+        text: ""
         bold: True
-        pos_hint: {'center_x':0.5, 'center_y': 0.15}
-
+        pos_hint: {'center_x':0.71, 'center_y': 0.25}
+        size_hint: (.35, .3)
         on_release:
             root.manager.current = 'showpass'
             root.manager.transition.direction = 'left'
+
+        Image:
+            size_hint_x: 1
+            allow_stretch: True
+            source: f'assets\\show.png'
+            pos_hint: {'center_y':0.5}
+
+#    MDCard:
+#        size_hint: None, None
+#        size: "300dp", "200dp"
+#        pos_hint: {"center_x": .25, "center_y": .6}
+#
+#        MDFlatButton:
+#            id: psmanager
+#
+#            text: ""
+#            bold: True
+#            pos_hint: {'center_x':0.5, 'center_y': 0.75}
+#            size_hint: (.25, .2)
+#            on_release:
+#                app.display_pass()
+#
+#            Image:
+#                size_hint_x: 1
+#                allow_stretch: True
+#                source: f'assets\\generate.png'
+#                pos_hint: {'center_y':0.5}

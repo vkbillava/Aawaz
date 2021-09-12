@@ -23,7 +23,7 @@ ScreenManager:
     name:'welcomesc'
 
     MDFlatButton:
-        text: "AAWAAZ"
+        text: ""
         pos_hint : {'center_x':0.5,'center_y':0.5}
         size_hint: (1,1)
         font_size: 75
@@ -32,4 +32,8 @@ ScreenManager:
             
             root.manager.current = 'loginsc'
             root.manager.transition.direction = 'left'
+
+        Image:
+            source: f'assets\\logo.png'
+            pos_hint: {'center_y':0.5}
             
