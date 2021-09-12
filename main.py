@@ -125,7 +125,7 @@ class AawazApp(MDApp):
 
     def build(self):
 
-        self.src = 'assets\\1977137.jpg'
+        self.src = 'assets\\1_ZhuqSg8Jmz4p8H6X5U1uzQ.png'
 
         self.sm = Screen()
         self.wing = Image(source = self.src, allow_stretch = True, size_hint = (2, 2),pos_hint={'center_x': 0.5, 'center_y': 0.5})

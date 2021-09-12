@@ -21,7 +21,15 @@ This Application contains different tools.
 5.Voice To Text 
     By using this module one can convert the audio into text. The user have to click on the mic icon and start talking after talking user have to press the display icon.
 
-6.Voice Assistant
-    This is a basic voice assistant using this you can search somethimg on web make simple calculations ask time and many more only by voice commands.
+6.Password Manager
+    This module used to store the username and password of the other sites or applications.
+
+7.Voice Assistant
+    This is a basic voice assistant using this you can search something on web make simple calculations ask time and many more only by voice commands.
 
 NOTE: This is just a basic voice assistant which cannot perform complex tasks.
+
+8.Clear Storage
+    This module is used to delete all the app data stored on the database.
+
+NOTE: This module doesn't delete user account or login credentials.
