@@ -159,7 +159,11 @@ class AawazApp(MDApp):
         close_btn = MDFlatButton(text="Close", on_release=self.close_dialog)
 
         try:
-            if len(result) == 0:
+            if loginUsername == '' or loginPassword == '':
+                self.dialog = MDDialog(title='Alert', text="UserName or Password  cannot be blank", size_hint=(0.7, 0.2), buttons=[close_btn])
+                self.dialog.open()
+
+            elif len(result) == 0:
                 self.strng.get_screen('loginsc').ids.login_username.text = ''
                 self.strng.get_screen('loginsc').ids.login_password.text = ''
                 self.strng.get_screen('signupsc').manager.current = 'signupsc'
