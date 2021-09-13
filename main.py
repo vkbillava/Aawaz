@@ -519,20 +519,22 @@ class AawazApp(MDApp):
     def store_pass(self):
         name = self.strng.get_screen('passstore').ids.store_username.text
         password = self.strng.get_screen('passstore').ids.store_password.text
-
-        res = show_passdb(name)
-        if len(res) == 0:
-            insertpassdb(name, password)
-
-            toast("Successfully stored")
-
+        if len(name) == 0 or len(password) == 0:
+            toast("Please enter both username and password")
         else:
-            cancel_btn_username_dialogue = MDFlatButton(text='Retry', on_release=self.close_dialog)
-            self.dialog = MDDialog(title='Username Exists',
-                                   text='You have Entered a username which is already present in the database you can update the password in database using update password menu',
-                                   size_hint=(0.7, 0.2),
-                                   buttons=[cancel_btn_username_dialogue])
-            self.dialog.open()
+            res = show_passdb(name)
+            if len(res) == 0:
+                insertpassdb(name, password)
+
+                toast("Successfully stored")
+
+            else:
+                cancel_btn_username_dialogue = MDFlatButton(text='Retry', on_release=self.close_dialog)
+                self.dialog = MDDialog(title='Username Exists',
+                                       text='You have Entered a username which is already present in the database you can update the password in database using update password menu',
+                                       size_hint=(0.7, 0.2),
+                                       buttons=[cancel_btn_username_dialogue])
+                self.dialog.open()
         self.strng.get_screen('passstore').ids.store_username.text = ""
         self.strng.get_screen('passstore').ids.store_password.text = ""
 
