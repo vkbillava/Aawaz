@@ -231,35 +231,35 @@ class AawazApp(MDApp):
                 self.dialog = MDDialog(title='Exists', text='The username already exists choose different one',
                                        size_hint=(0.7, 0.2), buttons=[cancel_btn_username_dialogue])
                 self.dialog.open()
-
-        if self.signupUsername.split() == [] or signupPassword.split() == []:
-            self.dialog = MDDialog(title = 'Invalid Input',text = 'Please Enter a valid Input',size_hint = (0.7,0.2),buttons = [cancel_btn_username_dialogue])
-            self.dialog.open()
-
-        elif len(self.signupUsername) < 3:
-            self.dialog = MDDialog(title = 'Invalid Input',text = 'Username must be minimum 3 digits',size_hint = (0.7,0.2),buttons = [cancel_btn_username_dialogue])
-            self.dialog.open()
-
-        elif len(self.signupUsername.split())>1:
-            self.dialog = MDDialog(title = 'Invalid Username',text = 'Please enter username without space',size_hint = (0.7,0.2),buttons = [cancel_btn_username_dialogue])
-            self.dialog.open()
-
-        elif len(signupPassword) < 8 or len(signupPassword) > 16:
-            self.dialog = MDDialog(title = 'Invalid Input',text = 'Password must between 8 to 16 digits',size_hint = (0.7,0.2),buttons = [cancel_btn_username_dialogue])
-            self.dialog.open()
-
-
-
         else:
-            self.recovery_key = self.forgot_key()
-            signupPassword = pass_hash(signupPassword)
+            if self.signupUsername.split() == [] or signupPassword.split() == []:
+                self.dialog = MDDialog(title = 'Invalid Input',text = 'Please Enter a valid Input',size_hint = (0.7,0.2),buttons = [cancel_btn_username_dialogue])
+                self.dialog.open()
 
-            signupdb(self.signupUsername,signupPassword,self.recovery_key)
-            self.store.put('LoginInfo',username = self.signupUsername, password = signupPassword, log = 'F', recoveryKey = self.recovery_key)
-            
-            self.display_key()
-            
-            self.strng.get_screen('loginsc').manager.current = 'loginsc'
+            elif len(self.signupUsername) < 3:
+                self.dialog = MDDialog(title = 'Invalid Input',text = 'Username must be minimum 3 digits',size_hint = (0.7,0.2),buttons = [cancel_btn_username_dialogue])
+                self.dialog.open()
+
+            elif len(self.signupUsername.split())>1:
+                self.dialog = MDDialog(title = 'Invalid Username',text = 'Please enter username without space',size_hint = (0.7,0.2),buttons = [cancel_btn_username_dialogue])
+                self.dialog.open()
+
+            elif len(signupPassword) < 8 or len(signupPassword) > 16:
+                self.dialog = MDDialog(title = 'Invalid Input',text = 'Password must between 8 to 16 digits',size_hint = (0.7,0.2),buttons = [cancel_btn_username_dialogue])
+                self.dialog.open()
+
+
+
+            else:
+                self.recovery_key = self.forgot_key()
+                signupPassword = pass_hash(signupPassword)
+
+                signupdb(self.signupUsername,signupPassword,self.recovery_key)
+                self.store.put('LoginInfo',username = self.signupUsername, password = signupPassword, log = 'F', recoveryKey = self.recovery_key)
+
+                self.display_key()
+
+                self.strng.get_screen('loginsc').manager.current = 'loginsc'
 
 
     def showloginpass(self):
@@ -289,6 +289,7 @@ class AawazApp(MDApp):
         username = self.store.get('LoginInfo')['username']
         user_deldb(username)
         self.strng.get_screen('loginsc').manager.current = 'loginsc'
+        toast(f"User '{username}' deleted succesfully")
 
     def closeapp(self):
         AawazApp().stop()
@@ -541,38 +542,43 @@ class AawazApp(MDApp):
     def update_pass(self):
         name = self.strng.get_screen('updatepass').ids.store_username.text
         password = self.strng.get_screen('updatepass').ids.store_password.text
-
-        res = show_passdb(name)
-        if len(res) == 0:
-            cancel_btn_username_dialogue = MDFlatButton(text='Retry', on_release=self.close_dialog)
-            self.dialog = MDDialog(title='Username Exists',
-                                   text='username doesn\'t exists in the database please enter a valid username',
-                                   size_hint=(0.7, 0.2),
-                                   buttons=[cancel_btn_username_dialogue])
-            self.dialog.open()
+        if len(name) == 0 or len(password) == 0:
+            toast("Please enter both username and password")
         else:
-            update_passdb(password, name)
+            res = show_passdb(name)
+            if len(res) == 0:
+                cancel_btn_username_dialogue = MDFlatButton(text='Retry', on_release=self.close_dialog)
+                self.dialog = MDDialog(title='Username Exists',
+                                       text='username doesn\'t exists in the database please enter a valid username',
+                                       size_hint=(0.7, 0.2),
+                                       buttons=[cancel_btn_username_dialogue])
+                self.dialog.open()
+            else:
+                update_passdb(password, name)
 
-            toast("Successfully Updated")
-            self.strng.get_screen('updatepass').ids.store_username.text = ""
-            self.strng.get_screen('updatepass').ids.store_password.text = ""
+                toast("Successfully Updated")
+                self.strng.get_screen('updatepass').ids.store_username.text = ""
+                self.strng.get_screen('updatepass').ids.store_password.text = ""
 
     def show_pass(self):
         name = self.strng.get_screen('showpass').ids.store_username.text
-        res = show_passdb(name)
-        if len(res) == 0:
-            cancel_btn_username_dialogue = MDFlatButton(text='Retry', on_release=self.close_dialog)
-            self.dialog = MDDialog(title='Username Exists',
-                                   text='username doesn\'t exists in the database please enter a valid username',
-                                   size_hint=(0.7, 0.2),
-                                   buttons=[cancel_btn_username_dialogue])
-            self.dialog.open()
+        if len(name) == 0:
+            toast("Please enter both username and password")
         else:
-            if self.theme_cls.device_orientation == "landscape":
-                txt = DisplayText(
-                    txt = res[1],
-                )
-                txt.open()
+            res = show_passdb(name)
+            if len(res) == 0:
+                cancel_btn_username_dialogue = MDFlatButton(text='Retry', on_release=self.close_dialog)
+                self.dialog = MDDialog(title='Username Exists',
+                                       text='username doesn\'t exists in the database please enter a valid username',
+                                       size_hint=(0.7, 0.2),
+                                       buttons=[cancel_btn_username_dialogue])
+                self.dialog.open()
+            else:
+                if self.theme_cls.device_orientation == "landscape":
+                    txt = DisplayText(
+                        txt = res[1],
+                    )
+                    txt.open()
 
     def show_data(self):
         # pass
