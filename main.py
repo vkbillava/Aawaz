@@ -388,8 +388,13 @@ class AawazApp(MDApp):
     def verify(self):
         cancel_btn_username_dialogue = MDFlatButton(text='Retry', on_release=self.close_dialog)
         username = self.strng.get_screen('forgetsc').ids.forget_username.text
+        security_key = self.strng.get_screen('forgetsc').ids.forget_password.text
         res = logindb(username)
-        if len(res) == 0:
+        if username == "" or security_key == "":
+            self.dialog = MDDialog(title='Alert', text='Username and Security cannot be empty', size_hint=(0.7, 0.2),
+                                   buttons=[cancel_btn_username_dialogue])
+            self.dialog.open()
+        elif len(res) == 0:
             self.dialog = MDDialog(title='Invalid Username', text='You have Entered a wrong username if you dont have an account please create one', size_hint=(0.7, 0.2),
                                    buttons=[cancel_btn_username_dialogue])
             self.dialog.open()
@@ -400,7 +405,7 @@ class AawazApp(MDApp):
 
             if self.strng.get_screen('forgetsc').ids.forget_password.hint_text == 'security key':
 
-                security_key = self.strng.get_screen('forgetsc').ids.forget_password.text
+
                 if stored_key == security_key:
                     self.strng.get_screen('forgetsc').ids.forget_password.hint_text = "Enter new Password"
                     self.strng.get_screen('forgetsc').ids.forget_password.text = ""
@@ -495,9 +500,13 @@ class AawazApp(MDApp):
 
     def to_speak(self):
         txt = self.strng.get_screen('textsc').ids.text_speak.text
-        speak(txt)
+        if len(txt) == 0:
+            speak("Please Enter valid input")
+        else:
+            speak(txt)
 
     def listen(self):
+        speak("Please talk")
         self.txt = gt()
 
     def to_clear(self):
